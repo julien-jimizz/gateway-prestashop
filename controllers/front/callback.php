@@ -29,6 +29,9 @@ class JimizzgatewayCallbackModuleFrontController extends ModuleFrontController
             $cart = new Cart($transaction->id_cart);
             $customer = new Customer($cart->id_customer);
 
+            $transaction->status = 'succeed';
+            $transaction->save();
+
             $this->module->validateOrder(
               $transaction->id_cart,
               _PS_OS_PAYMENT_,
@@ -50,7 +53,6 @@ class JimizzgatewayCallbackModuleFrontController extends ModuleFrontController
       header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK', true, 200);
       exit;
     } catch (Exception $e) {
-      print_r($e);
       error_log($e);
       $this->exit500();
     }

@@ -33,7 +33,7 @@ class JimizzGateway extends PaymentModule
     require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
     $this->name = 'jimizzgateway';
-    $this->version = '1.0.0';
+    $this->version = '1.0.1';
     $this->author = 'Jimizz Team';
     $this->tab = 'payments_gateways';
     $this->currencies = true;
