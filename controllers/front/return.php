@@ -17,8 +17,10 @@ class JimizzgatewayReturnModuleFrontController extends ModuleFrontController
 
     $jimizzTx = new JimizzTransaction($tx);
     if ($jimizzTx && !empty($jimizzTx->id_cart)) {
-      $jimizzTx->status = $action === 'cancel' ? 'cancelled' : ($action === 'success' ? 'succeed' : 'failed');
-      $jimizzTx->save();
+      if ($jimizzTx->status === 'pending') {
+        $jimizzTx->status = $action === 'cancel' ? 'cancelled' : ($action === 'success' ? 'succeed' : 'failed');
+        $jimizzTx->save();
+      }
     }
 
     if ($action === 'success') {
