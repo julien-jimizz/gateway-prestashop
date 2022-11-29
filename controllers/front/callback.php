@@ -25,7 +25,7 @@ class JimizzgatewayCallbackModuleFrontController extends ModuleFrontController
       } else {
         $transaction = new JimizzTransaction($data->transactionId);
         if (!empty($transaction) && property_exists($transaction, 'id_cart')) {
-          if ($data->status === 'ACCEPTED') {
+          if ($data->status === 'APPROVED') {
             $cart = new Cart($transaction->id_cart);
             $customer = new Customer($cart->id_customer);
 
